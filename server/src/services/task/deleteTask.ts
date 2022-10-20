@@ -8,7 +8,7 @@ export class DeleteTaskUseCase implements DeleteTaskUseCaseInterface {
     this.repository = repository;
   }
 
-  async execute(areaName: string, taskId: number): Promise<boolean> {
+  async execute(areaName: string, taskId: string): Promise<boolean> {
     return await this.repository.deleteTask(areaName, taskId);
   }
 }

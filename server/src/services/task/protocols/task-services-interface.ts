@@ -1,29 +1,33 @@
-import { Task } from "../../../database/protocols/data/task-interface";
+import { TaskInterface } from "../../../database/protocols/data/task-interface";
 
 export interface CreateTaskUseCaseInterface {
-  execute(areaName: string, taskBody: Task): Promise<boolean>;
+  execute(areaName: string, taskBody: TaskInterface): Promise<boolean>;
 }
 
 export interface DeleteTaskUseCaseInterface {
-  execute(areaName: string, taskId: number): Promise<boolean>;
+  execute(areaName: string, taskId: string): Promise<boolean>;
 }
 
 export interface GetAllTasksUseCaseInterface {
-  execute(areaName: string): Promise<Task[] | undefined>;
+  execute(areaName: string): Promise<TaskInterface[] | undefined>;
 }
 
 export interface GetTaskUseCaseInterface {
-  execute(areaName: string, taskId: number): Promise<Task | undefined>;
+  execute(areaName: string, taskId: string): Promise<TaskInterface | undefined>;
 }
 
 export interface UpdateTaskUseCaseInterface {
-  execute(areaName: string, taskId: number, taskBody: Task): Promise<boolean>;
+  execute(
+    areaName: string,
+    taskId: string,
+    taskBody: TaskInterface
+  ): Promise<boolean>;
 }
 
 export interface TaskServicesInterface {
-  createTaskUseCaseInterface: CreateTaskUseCaseInterface;
-  deleteTaskUseCaseInterface: DeleteTaskUseCaseInterface;
-  getAllTasksUseCaseInterface: GetAllTasksUseCaseInterface;
-  getTaskUseCaseInterface: GetTaskUseCaseInterface;
-  updateTaskUseCaseInterface: UpdateTaskUseCaseInterface;
+  createTaskUseCase: CreateTaskUseCaseInterface;
+  deleteTaskUseCase: DeleteTaskUseCaseInterface;
+  getAllTasksUseCase: GetAllTasksUseCaseInterface;
+  getTaskUseCase: GetTaskUseCaseInterface;
+  updateTaskUseCase: UpdateTaskUseCaseInterface;
 }

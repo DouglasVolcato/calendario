@@ -1,7 +1,7 @@
-import { Area } from "../../../database/protocols/data/area-interface";
+import { AreaInterface } from "../../../database/protocols/data/area-interface";
 
 export interface CreateAreaUseCaseInterface {
-  execute(areaBody: Area): Promise<boolean>;
+  execute(areaBody: AreaInterface): Promise<boolean>;
 }
 
 export interface DeleteAreaUseCaseInterface {
@@ -9,21 +9,21 @@ export interface DeleteAreaUseCaseInterface {
 }
 
 export interface GetAllAreasUseCaseInterface {
-  execute(): Promise<Area[]>;
+  execute(): Promise<AreaInterface[]>;
 }
 
 export interface GetAreaUseCaseInterface {
-  execute(name: string): Promise<Area | undefined>;
+  execute(name: string): Promise<AreaInterface | undefined>;
 }
 
 export interface UpdateAreaUseCaseInterface {
-  execute(name: string, areaBody: Area): Promise<boolean>;
+  execute(name: string, areaBody: AreaInterface): Promise<boolean>;
 }
 
 export interface AreaServicesInterface {
-  createAreaUseCaseInterface: CreateAreaUseCaseInterface;
-  deleteAreaUseCaseInterface: DeleteAreaUseCaseInterface;
-  getAllAreasUseCaseInterface: GetAllAreasUseCaseInterface;
-  getAreaUseCaseInterface: GetAreaUseCaseInterface;
-  updateAreaUseCaseInterface: UpdateAreaUseCaseInterface;
+  createAreaUseCase: CreateAreaUseCaseInterface;
+  deleteAreaUseCase: DeleteAreaUseCaseInterface;
+  getAllAreasUseCase: GetAllAreasUseCaseInterface;
+  getAreaUseCase: GetAreaUseCaseInterface;
+  updateAreaUseCase: UpdateAreaUseCaseInterface;
 }

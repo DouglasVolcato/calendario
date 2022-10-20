@@ -1,4 +1,4 @@
-import { Area } from "../../database/protocols/data/area-interface";
+import { AreaInterface } from "../../database/protocols/data/area-interface";
 import { AreaRepositoryInterface } from "../../database/protocols/repositories/area-repository-interface";
 import { UpdateAreaUseCaseInterface } from "./protocols/area-services-interface";
 
@@ -9,7 +9,7 @@ export class UpdateAreaUseCase implements UpdateAreaUseCaseInterface {
     this.repository = repository;
   }
 
-  async execute(name: string, areaBody: Area): Promise<boolean> {
+  async execute(name: string, areaBody: AreaInterface): Promise<boolean> {
     return await this.repository.updateArea(name, areaBody);
   }
 }

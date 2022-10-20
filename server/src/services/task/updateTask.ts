@@ -1,4 +1,4 @@
-import { Task } from "../../database/protocols/data/task-interface";
+import { TaskInterface } from "../../database/protocols/data/task-interface";
 import { TaskRepositoryInterface } from "../../database/protocols/repositories/task-repository-interface";
 import { UpdateTaskUseCaseInterface } from "./protocols/task-services-interface";
 
@@ -11,8 +11,8 @@ export class UpdateTaskUseCase implements UpdateTaskUseCaseInterface {
 
   async execute(
     areaName: string,
-    taskId: number,
-    taskBody: Task
+    taskId: string,
+    taskBody: TaskInterface
   ): Promise<boolean> {
     return await this.repository.updateTask(areaName, taskId, taskBody);
   }

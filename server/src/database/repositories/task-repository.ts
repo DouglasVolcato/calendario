@@ -1,13 +1,16 @@
 import { calendar } from "../mocks/calendar";
-import { Area } from "../protocols/data/area-interface";
-import { Task } from "../protocols/data/task-interface";
+import { AreaInterface } from "../protocols/data/area-interface";
+import { TaskInterface } from "../protocols/data/task-interface";
 import { TaskRepositoryInterface } from "../protocols/repositories/task-repository-interface";
 
 export class TaskRepository implements TaskRepositoryInterface {
-  async createTask(areaName: string, taskBody: Task): Promise<boolean> {
-    const foundArea: Area[] = [];
+  async createTask(
+    taskName: string,
+    taskBody: TaskInterface
+  ): Promise<boolean> {
+    const foundArea: AreaInterface[] = [];
     await calendar.map((area) => {
-      if (area.name === areaName) {
+      if (area.name === taskName) {
         foundArea.push(area);
         area.tasks.push(taskBody);
       }
@@ -19,13 +22,16 @@ export class TaskRepository implements TaskRepositoryInterface {
     }
   }
 
-  async getTask(areaName: string, taskId: number): Promise<Task | undefined> {
+  async getTask(
+    taskName: string,
+    taskId: string
+  ): Promise<TaskInterface | undefined> {
     const foundArea = await calendar.find(
-      (element) => element.name === areaName
+      (element) => element.name === taskName
     );
     if (foundArea) {
       const foundTask = await foundArea.tasks.find(
-        (element) => element.id === taskId
+        (element: TaskInterface) => element.id === taskId
       );
       if (foundTask) {
         return foundTask;
@@ -37,9 +43,9 @@ export class TaskRepository implements TaskRepositoryInterface {
     }
   }
 
-  async getAllTasks(areaName: string): Promise<Task[] | undefined> {
+  async getAllTasks(taskName: string): Promise<TaskInterface[] | undefined> {
     const foundArea = await calendar.find(
-      (element) => element.name === areaName
+      (element) => element.name === taskName
     );
     if (foundArea) {
       if (foundArea.tasks) {
@@ -53,16 +59,16 @@ export class TaskRepository implements TaskRepositoryInterface {
   }
 
   async updateTask(
-    areaName: string,
-    taskId: number,
-    taskBody: Task
+    taskName: string,
+    taskId: string,
+    taskBody: TaskInterface
   ): Promise<boolean> {
-    const foundArea: Area[] = [];
-    const foundTask: Task[] = [];
+    const foundArea: AreaInterface[] = [];
+    const foundTask: TaskInterface[] = [];
     await calendar.map((area, areaIndex) => {
-      if (area.name === areaName) {
+      if (area.name === taskName) {
         foundArea.push(area);
-        area.tasks.map((task, taskIndex) => {
+        area.tasks.map((task: TaskInterface, taskIndex: number) => {
           if (task.id === taskId) {
             foundTask.push(task);
             calendar[areaIndex].tasks.splice(taskIndex, 1, taskBody);
@@ -77,13 +83,13 @@ export class TaskRepository implements TaskRepositoryInterface {
     }
   }
 
-  async deleteTask(areaName: string, taskId: number): Promise<boolean> {
-    const foundArea: Area[] = [];
-    const foundTask: Task[] = [];
+  async deleteTask(taskName: string, taskId: string): Promise<boolean> {
+    const foundArea: AreaInterface[] = [];
+    const foundTask: TaskInterface[] = [];
     await calendar.map((area, areaIndex) => {
-      if (area.name === areaName) {
+      if (area.name === taskName) {
         foundArea.push(area);
-        area.tasks.map((task, taskIndex) => {
+        area.tasks.map((task: TaskInterface, taskIndex: number) => {
           if (task.id === taskId) {
             foundTask.push(task);
             calendar[areaIndex].tasks.splice(taskIndex, 1);

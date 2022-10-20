@@ -1,4 +1,4 @@
-import { Area } from "../../database/protocols/data/area-interface";
+import { AreaInterface } from "../../database/protocols/data/area-interface";
 import { AreaRepositoryInterface } from "../../database/protocols/repositories/area-repository-interface";
 import { GetAllAreasUseCaseInterface } from "./protocols/area-services-interface";
 
@@ -9,7 +9,7 @@ export class GetAllAreasUseCase implements GetAllAreasUseCaseInterface {
     this.repository = repository;
   }
 
-  async execute(): Promise<Area[]> {
+  async execute(): Promise<AreaInterface[]> {
     return await this.repository.getAllAreas();
   }
 }

@@ -1,15 +1,17 @@
 import { calendar } from "../mocks/calendar";
-import { Area } from "../protocols/data/area-interface";
+import { AreaInterface } from "../protocols/data/area-interface";
 import { AreaRepositoryInterface } from "../protocols/repositories/area-repository-interface";
 
 export class AreaRepository implements AreaRepositoryInterface {
-  async createArea(areaBody: Area): Promise<boolean> {
+  async createArea(areaBody: AreaInterface): Promise<boolean> {
     await calendar.push(areaBody);
     return true;
   }
 
-  async getArea(name: string): Promise<Area | undefined> {
-    const foundArea = await calendar.find((element) => element.name === name);
+  async getArea(name: string): Promise<AreaInterface | undefined> {
+    const foundArea = await calendar.find(
+      (element: AreaInterface) => element.name === name
+    );
     if (foundArea) {
       return foundArea;
     } else {
@@ -17,13 +19,13 @@ export class AreaRepository implements AreaRepositoryInterface {
     }
   }
 
-  async getAllAreas(): Promise<Area[]> {
+  async getAllAreas(): Promise<AreaInterface[]> {
     return await calendar;
   }
 
-  async updateArea(name: string, areaBody: Area): Promise<boolean> {
-    const foundArea: Area[] = [];
-    await calendar.map((element, index) => {
+  async updateArea(name: string, areaBody: AreaInterface): Promise<boolean> {
+    const foundArea: AreaInterface[] = [];
+    await calendar.map((element: AreaInterface, index: number) => {
       if (element.name === name) {
         foundArea.push(element);
         calendar.splice(index, 1, areaBody);
@@ -37,8 +39,8 @@ export class AreaRepository implements AreaRepositoryInterface {
   }
 
   async deleteArea(name: string): Promise<boolean> {
-    const foundArea: Area[] = [];
-    await calendar.map((element, index) => {
+    const foundArea: AreaInterface[] = [];
+    await calendar.map((element: AreaInterface, index: number) => {
       if (element.name === name) {
         foundArea.push(element);
         calendar.splice(index, 1);
