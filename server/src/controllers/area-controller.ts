@@ -61,7 +61,7 @@ export class AreaController implements AreaControllerInterface {
       const areaBody = httpRequest.body;
       const name = httpRequest.name;
       if (name && areaBody) {
-        const updated = this.services.updateAreaUseCase.execute(name, areaBody);
+        const updated = await this.services.updateAreaUseCase.execute(name, areaBody);
         return ok({ updated });
       } else {
         return badRequest(new MissingParamError("name / body"));
