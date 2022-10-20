@@ -14,6 +14,12 @@ export class UpdateTaskUseCase implements UpdateTaskUseCaseInterface {
     taskId: string,
     taskBody: TaskInterface
   ): Promise<boolean> {
-    return await this.repository.updateTask(areaName, taskId, taskBody);
+    const foundTask = await this.repository.getTask(areaName, taskId);
+    if (foundTask) {
+      const update = Object.assign(foundTask, taskBody);
+      return await this.repository.updateTask(areaName, taskId, update);
+    } else {
+      return false;
+    }
   }
 }

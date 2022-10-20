@@ -10,6 +10,14 @@ export class UpdateAreaUseCase implements UpdateAreaUseCaseInterface {
   }
 
   async execute(name: string, areaBody: AreaInterface): Promise<boolean> {
-    return await this.repository.updateArea(name, areaBody);
+    const foundArea = await this.repository.getArea(name);
+    if (foundArea) {
+      return await this.repository.updateArea(
+        name,
+        Object.assign(foundArea, areaBody)
+      );
+    } else {
+      return false;
+    }
   }
 }
