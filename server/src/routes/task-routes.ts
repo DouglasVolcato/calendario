@@ -23,7 +23,7 @@ export class TaskRoutes implements RoutesInterface {
     );
 
     this.router.delete(
-      "/create-task/:name/:id",
+      "/delete-task/:name/:id",
       async (req: Request, res: Response) => {
         const httpRequest = makeHttpRequest(req);
         const httpResponse = await this.controller.deleteTask(httpRequest);
@@ -44,12 +44,12 @@ export class TaskRoutes implements RoutesInterface {
       "/get-task/:name/:id",
       async (req: Request, res: Response) => {
         const httpRequest = makeHttpRequest(req);
-        const httpResponse = await this.controller.getAllTasks(httpRequest);
+        const httpResponse = await this.controller.getTask(httpRequest);
         res.status(httpResponse.statusCode).json(httpResponse.body);
       }
     );
 
-    this.router.get(
+    this.router.put(
       "/update-task/:name/:id",
       async (req: Request, res: Response) => {
         const httpRequest = makeHttpRequest(req);

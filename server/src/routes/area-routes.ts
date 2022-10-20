@@ -28,7 +28,7 @@ export class AreaRoutes implements RoutesInterface {
       }
     );
 
-    this.router.delete(
+    this.router.get(
       "/get-all-areas",
       async (req: Request, res: Response) => {
         const httpRequest = makeHttpRequest(req);
@@ -37,7 +37,7 @@ export class AreaRoutes implements RoutesInterface {
       }
     );
 
-    this.router.delete(
+    this.router.get(
       "/get-area/:name",
       async (req: Request, res: Response) => {
         const httpRequest = makeHttpRequest(req);
@@ -46,7 +46,7 @@ export class AreaRoutes implements RoutesInterface {
       }
     );
 
-    this.router.delete(
+    this.router.put(
       "/update-area/:name",
       async (req: Request, res: Response) => {
         const httpRequest = makeHttpRequest(req);
