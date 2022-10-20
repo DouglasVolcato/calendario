@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./Header";
 import { EditAreas } from "./EditAreas";
 import "../styles/App.css";
@@ -41,20 +41,24 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <BrowserRouter>
       <Header />
       <div className="Body">
-        <EditAreas
-          areas={areas}
-          deleteArea={deleteArea}
-          editArea={editArea}
-          createArea={createArea}
-        />
+        <Routes>
+          <Route
+            path="/path=areas"
+            element={
+              <EditAreas
+                areas={areas}
+                deleteArea={deleteArea}
+                editArea={editArea}
+                createArea={createArea}
+              />
+            }
+          />
+        </Routes>
       </div>
-      {/* <Routes>
-            <Route path="/" element={<MainComponent />} />
-          </Routes> */}
-    </Router>
+    </BrowserRouter>
   );
 }
 

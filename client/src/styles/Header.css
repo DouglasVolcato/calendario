@@ -9,6 +9,7 @@
 
 .Header-title{
     text-align: center;
+    cursor: pointer;
 }
 
 .Header-navbar{
