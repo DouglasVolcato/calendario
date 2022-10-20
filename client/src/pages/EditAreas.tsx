@@ -36,6 +36,7 @@ export function EditAreas({ areas, deleteArea, editArea, createArea }: Props) {
       <div className="EditAreas-list">
         {areas.map((area: AreaInterface, key: number) => (
           <AreaCard
+          key={key}
             area={area}
             index={key}
             deleteArea={deleteArea}

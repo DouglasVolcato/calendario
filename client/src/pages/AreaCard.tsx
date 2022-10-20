@@ -3,18 +3,14 @@ import { AreaInterface } from "../protocols/data/area-interface";
 import "../styles/AreaCard.css";
 
 interface Props {
+  key: number;
   area: AreaInterface;
   index: number;
   deleteArea(araName: string): Promise<void>;
   editArea(areaName: string, newAreaName: string): Promise<void>;
 }
 
-export function AreaCard({
-  area,
-  index,
-  deleteArea,
-  editArea,
-}: Props) {
+export function AreaCard({ area, index, deleteArea, editArea }: Props) {
   const [editionForm, setEditionForm] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>(area.name);
 
