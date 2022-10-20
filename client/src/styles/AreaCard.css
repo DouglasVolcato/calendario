@@ -1,0 +1,19 @@
+.AreaCard{
+    margin: 15px 20px 15px 20px;
+    min-width: fit-content;
+    width: 30vw;
+    background-color: rgb(17, 85, 0);
+    padding: 5px;
+    border-radius: 3%;
+    border: solid 3px rgb(131, 165, 6);
+}
+.AreaCard-name{
+    text-align: left;
+    font-size: 25px;
+    margin: 10px;
+}
+
+.AreaCard-buttons{
+    display: flex;
+    justify-content: space-evenly;
+}

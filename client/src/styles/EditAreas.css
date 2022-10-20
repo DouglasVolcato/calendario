@@ -1,0 +1,26 @@
+.EditAreas{
+    width: 100vw;
+}
+
+.EditAreas-list{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.EditAreas-creationForm{
+    border: solid 2px green;
+    background-color: rgb(42, 129, 230);
+    padding: 10px;
+    width: fit-content;
+    max-width: 90vw;
+    margin: auto auto 20px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.EditAreas-creationForm_input{
+    font-size: 21px;
+    max-width: 90vw;
+}

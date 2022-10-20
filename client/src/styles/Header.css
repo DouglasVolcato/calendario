@@ -1,0 +1,27 @@
+.Header{
+    width: 100vw;
+    margin: auto;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    height: 120px;
+}
+
+.Header-title{
+    text-align: center;
+}
+
+.Header-navbar{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(16, 73, 148);
+}
+
+.Header-navbar_button{
+    width: 50%;
+    background-color: rgb(16, 73, 148);
+}
+
+.Header-navbar_button:hover{
+    background-color: rgb(0, 170, 170);
+}
