@@ -26,7 +26,7 @@ export class AreaRepository implements AreaRepositoryInterface {
   async updateArea(name: string, areaBody: AreaInterface): Promise<boolean> {
     const foundArea: AreaInterface[] = [];
     await calendar.map((element: AreaInterface, index: number) => {
-      if (element.name === name) {
+      if (element.name === name || areaBody.name) {
         foundArea.push(element);
         calendar.splice(index, 1, areaBody);
       }
