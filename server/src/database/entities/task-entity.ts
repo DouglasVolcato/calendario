@@ -3,7 +3,7 @@ import { TaskInterface } from "../protocols/data/task-interface";
 import { Entity } from "../protocols/entities/entity-interface";
 import { v4 as uuid } from "uuid";
 
-export class Area implements Entity {
+export class Task implements Entity {
   body: TaskInterface;
 
   constructor(body: TaskInterface) {
@@ -11,16 +11,7 @@ export class Area implements Entity {
   }
 
   validate(): void {
-    if (
-      !this.body.name ||
-      !this.body.description ||
-      !this.body.deadline ||
-      !this.body.agreedDeadline ||
-      !this.body.urgency ||
-      !this.body.gravity ||
-      !this.body.tendency ||
-      !this.body.legalDemand
-    ) {
+    if (!this.body.name || !this.body.description) {
       throw new MissingParamError("name");
     }
   }
@@ -30,12 +21,13 @@ export class Area implements Entity {
       id: uuid(),
       name: this.body.name,
       description: this.body.description,
-      deadline: this.body.deadline,
-      agreedDeadline: this.body.agreedDeadline,
-      urgency: this.body.urgency,
-      gravity: this.body.gravity,
-      tendency: this.body.tendency,
-      legalDemand: this.body.legalDemand,
+      deadline: this.body.deadline || new Date().toISOString().split("T")[0],
+      agreedDeadline:
+        this.body.agreedDeadline || new Date().toISOString().split("T")[0],
+      urgency: this.body.urgency ?? "Pode esperar",
+      gravity: this.body.gravity ?? "Sem gravidade",
+      tendency: this.body.tendency ?? "Não irá mudar",
+      legalDemand: this.body.legalDemand ?? false,
     };
   }
 }
