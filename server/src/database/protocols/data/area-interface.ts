@@ -1,6 +1,6 @@
-import { Task } from "./task-interface";
+import { TaskInterface } from "./task-interface";
 
-export interface Area {
+export interface AreaInterface {
   name: string;
-  tasks: Task[];
+  tasks: TaskInterface[];
 }

@@ -1,5 +1,5 @@
-export interface Task {
-  id: number;
+export interface TaskInterface {
+  id: string;
   name: string;
   description: string;
   deadline: Date;
