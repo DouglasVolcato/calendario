@@ -15,14 +15,26 @@ export function AreaCard({ area, index, deleteArea, editArea }: Props) {
   const [newName, setNewName] = useState<string>(area.name);
 
   async function deleteItem(): Promise<void> {
-    await deleteArea(area.name);
-    setEditionForm(false);
+    if (area.tasks.length > 0) {
+      alert(
+        "Essa área possui tarefas cadastradas, logo não pode ser deletada."
+      );
+    } else {
+      await deleteArea(area.name);
+      setEditionForm(false);
+    }
   }
 
   async function editItem(event: FormEventHandler | any): Promise<void> {
     event.preventDefault();
-    await editArea(area.name, newName);
-    setEditionForm(false);
+    if (area.tasks.length > 0) {
+      alert(
+        "Essa área possui tarefas cadastradas, logo não pode ser alterada."
+      );
+    } else {
+      await editArea(area.name, newName);
+      setEditionForm(false);
+    }
   }
 
   return (
