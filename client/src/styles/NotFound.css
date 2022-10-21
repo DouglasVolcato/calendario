@@ -1,0 +1,10 @@
+.NotFound{
+    width: 100vw;
+    text-align: center;
+}
+.NotFound-title{
+    font-size: 45px;
+}
+.NotFound-description{
+    font-size: 20px;
+}
