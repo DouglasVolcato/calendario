@@ -16,7 +16,6 @@ export function EditAreas({ areas, deleteArea, editArea, createArea }: Props) {
   async function createitem(event: FormEventHandler | any) {
     event.preventDefault();
     await createArea(newArea);
-    console.log(newArea);
     setNewArea("");
   }
 
@@ -36,7 +35,7 @@ export function EditAreas({ areas, deleteArea, editArea, createArea }: Props) {
       <div className="EditAreas-list">
         {areas.map((area: AreaInterface, key: number) => (
           <AreaCard
-          key={key}
+            key={key}
             area={area}
             index={key}
             deleteArea={deleteArea}
