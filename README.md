@@ -8,7 +8,7 @@
 ## Como rodar esse projeto
 Para utilizar esse projeto, primeiro baixe-o em sua máquina.
 
-Tendo isso feito, o mesmo poderá ser utilizado tanto em servicor local quanto pelo auxílio do Docker.
+Tendo isso feito, o mesmo poderá ser utilizado tanto em servidor local quanto pelo auxílio do Docker.
 
 <div id='utilizando-docker'/>
 
