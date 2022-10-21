@@ -56,19 +56,3 @@ export const apiArea = {
     return data;
   },
 };
-
-export const apiTask = {
-  getAllTasks: async (
-    areaName: string
-  ): Promise<{ foundAreas: AreaInterface[] }> => {
-    const response = await fetch(baseUrl + "/task/get-all-tasks/" + areaName, {
-      method: "GET",
-      headers: new Headers({
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      }),
-    });
-    const data = await response.json();
-    return data;
-  },
-};
