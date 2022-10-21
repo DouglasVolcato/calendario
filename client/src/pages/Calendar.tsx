@@ -36,39 +36,11 @@ export function Calendar({ areas, updateTask }: Props) {
     { name: "Dezembro", number: 12 },
   ];
 
-  function getAreas(area: AreaInterface, index: number) {
+  function colorAreas(index: number) {
     if (index % 2 === 0) {
-      return (
-        <div className="Calendar-areas">
-          {months.map((item, index) => (
-            <div>
-              <TaskCards
-                area={area}
-                index={index}
-                from={from}
-                to={to}
-                updateTask={updateTask}
-              />
-            </div>
-          ))}
-        </div>
-      );
+      return "Calendar-areas";
     } else {
-      return (
-        <div className="Calendar-areas colored">
-          {months.map((item, index) => (
-            <div>
-              <TaskCards
-                area={area}
-                index={index}
-                from={from}
-                to={to}
-                updateTask={updateTask}
-              />
-            </div>
-          ))}
-        </div>
-      );
+      return "Calendar-areas colored";
     }
   }
 
@@ -77,7 +49,21 @@ export function Calendar({ areas, updateTask }: Props) {
       {months.map((month) => (
         <div className={`month-${month.number}`}>{month.name}</div>
       ))}
-      {selectedArea.map((area, index) => getAreas(area, index))}
+      {selectedArea.map((area, index) => (
+        <div className={colorAreas(index)}>
+          {months.map((item, index) => (
+            <div>
+              <TaskCards
+                area={area}
+                index={index}
+                from={from}
+                to={to}
+                updateTask={updateTask}
+              />
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
