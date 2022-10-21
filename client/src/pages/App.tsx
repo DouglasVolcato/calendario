@@ -5,6 +5,10 @@ import "../styles/App.css";
 import { apiArea } from "../utils/api";
 import { useEffect, useState } from "react";
 import { AreaInterface } from "../protocols/data/area-interface";
+import { Tasks } from "./Tasks";
+import { Calendar } from "./Calendar";
+import { apiTask } from "../utils/apiTask";
+import { TaskInterface } from "../protocols/data/task-interface";
 
 function App() {
   const [areas, setAreas] = useState<AreaInterface[]>([]);
@@ -36,6 +40,15 @@ function App() {
     setAreas([...areas, { name: areaName, tasks: [] }]);
   }
 
+  async function createTask(areaName: string, taskBody: TaskInterface) {
+    const created = await apiTask.createTask(areaName, taskBody);
+    areas.map((area) => {
+      if (area.name === areaName) {
+        area.tasks.push(taskBody);
+      }
+    });
+  }
+
   useEffect(() => {
     getAreas();
   }, []);
@@ -45,6 +58,10 @@ function App() {
       <Header />
       <div className="Body">
         <Routes>
+          <Route
+            path="/"
+            element={<Tasks areas={areas} createTask={createTask} />}
+          />
           <Route
             path="/path=areas"
             element={
@@ -56,6 +73,7 @@ function App() {
               />
             }
           />
+          <Route path="/path=calendar" element={<Calendar areas={areas} />} />
         </Routes>
       </div>
     </BrowserRouter>

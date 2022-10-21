@@ -1,0 +1,46 @@
+.CreateTask{
+    width: 95vw;
+    margin: 10px;
+}
+
+.CreateTask-form{
+    border: solid 5px wheat;
+    width: fit-content;
+    min-width: 40vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.CreateTask-form label{
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.CreateTask-form_input{
+    font-size: 15px;
+}
+
+.CreateTask-form_select{
+    width: 40%;
+    font-size: 17px;
+    width: 50%;
+}
+
+.CreateTask-form_data{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.CreateTask-form_checkBox{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.CreateTask-form_button{
+    width: 150px;
+    margin: auto;
+}
