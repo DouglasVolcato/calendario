@@ -39,9 +39,13 @@ export function SearchTasks({ areas }: Props) {
 
   function handleSubmit(event: FormEventHandler | any): void {
     event.preventDefault();
-    navigate(
-      `/path=calendar?area=${selectedArea}&from=${selectedMonths.month1}&to=${selectedMonths.month2}`
-    );
+    if (selectedMonths.month1 <= selectedMonths.month2) {
+      navigate(
+        `/path=calendar?area=${selectedArea}&from=${selectedMonths.month1}&to=${selectedMonths.month2}`
+      );
+    } else {
+      alert("O primeiro mês deve ser menor ou igual ao segundo mês.");
+    }
   }
 
   return (
