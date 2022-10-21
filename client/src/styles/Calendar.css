@@ -1,0 +1,21 @@
+.Calendar{
+    min-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+    grid-row-gap: 5px;
+}
+
+.Calendar div{
+    text-align: center;
+    height: fit-content;
+    padding: 5px;
+    min-width: fit-content;
+}
+
+.Calendar-areas{
+    border: solid 1.5px;
+    grid-column-start: 1;
+    grid-column-end: 14;
+    display: grid;
+    grid-template-columns: repeat(13, 1fr);
+}
