@@ -56,16 +56,62 @@ export function CreateTask({ areas, createTask }: Props) {
 
   async function createItem(event: FormEventHandler | any): Promise<void> {
     event.preventDefault();
-    await createTask(newTask.area, {
-      name: newTask.name,
-      description: newTask.description,
-      deadline: newTask.deadline,
-      agreedDeadline: newTask.agreedDeadline,
-      urgency: newTask.urgency,
-      gravity: newTask.gravity,
-      tendency: newTask.tendency,
-      legalDemand: newTask.legalDemand,
-    });
+
+    const deadline = newTask.deadline.split("-");
+    const agreedDeadline = newTask.agreedDeadline.split("-");
+    const currentDate = new Date().toISOString().split("T")[0].split("-");
+
+    const urgencyTest =
+      newTask.urgency === "" || newTask.urgency === "null" ? true : false;
+    const tendencyTest =
+      newTask.tendency === "" || newTask.tendency === "null" ? true : false;
+    const gravityTest =
+      newTask.gravity === "" || newTask.gravity === "null" ? true : false;
+
+    if (
+      deadline[0] === "" ||
+      agreedDeadline[0] === "" ||
+      deadline[0] !== agreedDeadline[0] ||
+      agreedDeadline[0] !== currentDate[0] ||
+      Number(currentDate[1]) > Number(deadline[1]) ||
+      Number(agreedDeadline[1]) < Number(currentDate[1])
+    ) {
+      alert(
+        "O prazo acordado e o prazo legal devem estar entre a data atual e o último dia do ano corrente."
+      );
+    } else if (deadline[1] === currentDate[1] && deadline[2] < currentDate[2]) {
+      alert(
+        "O prazo acordado e o prazo legal devem estar entre a data atual e o último dia do ano corrente."
+      );
+    } else if (
+      agreedDeadline[1] === currentDate[1] &&
+      agreedDeadline[2] < currentDate[2]
+    ) {
+      alert(
+        "O prazo acordado e o prazo legal devem estar entre a data atual e o último dia do ano corrente."
+      );
+    } else if (
+      newTask.area === "" ||
+      newTask.area === "null" ||
+      !newTask.name ||
+      !newTask.description
+    ) {
+      alert("Preencha área, nome, descrição, datas e um dos itens da GUT.");
+    } else if (urgencyTest && tendencyTest && gravityTest) {
+      alert("Preencha, pelo menos, Gravidade, Urgência ou Tendência.");
+    } else {
+      await createTask(newTask.area, {
+        name: newTask.name,
+        description: newTask.description,
+        deadline: newTask.deadline,
+        agreedDeadline: newTask.agreedDeadline,
+        urgency: newTask.urgency,
+        gravity: newTask.gravity,
+        tendency: newTask.tendency,
+        legalDemand: newTask.legalDemand,
+      });
+      alert("Tarefa criada");
+    }
   }
 
   return (
