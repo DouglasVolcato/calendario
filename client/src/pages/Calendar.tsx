@@ -11,16 +11,19 @@ interface Props {
 
 export function Calendar({ areas, updateTask }: Props) {
   const [searchParams] = useSearchParams();
-  const selectedAreaName = searchParams.get("area");
-  const from = searchParams.get("from");
-  const to = searchParams.get("to");
+  const selectedAreaName: string | null = searchParams.get("area");
+  const from: string | null = searchParams.get("from");
+  const to: string | null = searchParams.get("to");
 
-  const selectedArea =
+  const selectedArea: AreaInterface[] =
     selectedAreaName !== "unset"
       ? areas.filter((area) => area.name === selectedAreaName)
       : areas;
 
-  const months = [
+  const months: {
+    name: string;
+    number: number;
+  }[] = [
     { name: "", number: 0 },
     { name: "Janeiro", number: 1 },
     { name: "Fevereito", number: 2 },
@@ -36,7 +39,7 @@ export function Calendar({ areas, updateTask }: Props) {
     { name: "Dezembro", number: 12 },
   ];
 
-  function colorAreas(index: number) {
+  function colorAreas(index: number): string {
     if (index % 2 === 0) {
       return "Calendar-areas";
     } else {
@@ -46,14 +49,17 @@ export function Calendar({ areas, updateTask }: Props) {
 
   return (
     <div className="Calendar">
-      {months.map((month) => (
-        <div className={`month-${month.number}`}>{month.name}</div>
+      {months.map((month, key) => (
+        <div key={key} className={`month-${month.number}`}>
+          {month.name}
+        </div>
       ))}
-      {selectedArea.map((area, index) => (
-        <div className={colorAreas(index)}>
+      {selectedArea.map((area: AreaInterface, index) => (
+        <div key={index} className={colorAreas(index)}>
           {months.map((item, index) => (
             <div>
               <TaskCards
+                key={index}
                 area={area}
                 index={index}
                 from={from}

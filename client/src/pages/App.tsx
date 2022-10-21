@@ -14,20 +14,23 @@ import NotFound from "./NotFound";
 function App() {
   const [areas, setAreas] = useState<AreaInterface[]>([]);
 
-  async function getAreas() {
+  async function getAreas(): Promise<void> {
     const foundAreas: { foundAreas: AreaInterface[] } =
       await apiArea.getAllAreas();
     setAreas(foundAreas.foundAreas);
   }
 
-  async function deleteArea(areaName: string) {
-    const deleted: boolean = await apiArea.deleteArea(areaName);
+  async function deleteArea(areaName: string): Promise<void> {
+    await apiArea.deleteArea(areaName);
     setAreas(() => areas.filter((area) => area.name !== areaName));
     setTimeout(() => getAreas(), 3000);
   }
 
-  async function editArea(areaName: string, newAreaName: string) {
-    const edited: boolean = await apiArea.editAreaName(areaName, newAreaName);
+  async function editArea(
+    areaName: string,
+    newAreaName: string
+  ): Promise<void> {
+    await apiArea.editAreaName(areaName, newAreaName);
     const newAreas = areas;
     newAreas.map((area, index) => {
       if (area.name === areaName) {
@@ -38,14 +41,17 @@ function App() {
     setTimeout(() => getAreas(), 3000);
   }
 
-  async function createArea(areaName: string) {
-    const created = await apiArea.createArea(areaName);
+  async function createArea(areaName: string): Promise<void> {
+    await apiArea.createArea(areaName);
     setAreas([...areas, { name: areaName, tasks: [] }]);
     setTimeout(() => getAreas(), 3000);
   }
 
-  async function createTask(areaName: string, taskBody: TaskInterface) {
-    const created = await apiTask.createTask(areaName, taskBody);
+  async function createTask(
+    areaName: string,
+    taskBody: TaskInterface
+  ): Promise<void> {
+    await apiTask.createTask(areaName, taskBody);
     areas.map((area) => {
       if (area.name === areaName) {
         area.tasks.push(taskBody);
@@ -54,7 +60,10 @@ function App() {
     setTimeout(() => getAreas(), 3000);
   }
 
-  async function updateTask(areaName: string, taskBody: TaskInterface) {
+  async function updateTask(
+    areaName: string,
+    taskBody: TaskInterface
+  ): Promise<void> {
     await apiTask.updateTask(areaName, taskBody);
     setTimeout(() => getAreas(), 3000);
   }

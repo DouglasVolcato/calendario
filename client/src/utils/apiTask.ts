@@ -13,14 +13,14 @@ export const apiTask = {
         "Content-Type": "application/json",
       }),
     });
-    const data = await response.json();
+    const data: { foundTasks: TaskInterface[] } = await response.json();
     return data;
   },
 
   createTask: async (
     areaName: string,
     taskBody: TaskInterface
-  ): Promise<{ foundTasks: TaskInterface[] }> => {
+  ): Promise<boolean> => {
     const response = await fetch(baseUrl + "/task/create-task/" + areaName, {
       method: "POST",
       headers: new Headers({
@@ -29,14 +29,14 @@ export const apiTask = {
       }),
       body: JSON.stringify(taskBody),
     });
-    const data = await response.json();
+    const data: boolean = await response.json();
     return data;
   },
 
   updateTask: async (
     areaName: string,
     taskBody: TaskInterface
-  ): Promise<{ foundTasks: TaskInterface[] }> => {
+  ): Promise<boolean> => {
     const response = await fetch(
       baseUrl + "/task/update-task/" + areaName + "/" + taskBody.id,
       {
@@ -48,15 +48,11 @@ export const apiTask = {
         body: JSON.stringify(taskBody),
       }
     );
-    const data = await response.json();
+    const data: boolean = await response.json();
     return data;
   },
 
-  deleteTask: async (
-    areaName: string,
-    taskId: string
-  ): Promise<{ foundTasks: TaskInterface[] }> => {
-    console.log("foi");
+  deleteTask: async (areaName: string, taskId: string): Promise<boolean> => {
     const response = await fetch(
       baseUrl + "/task/delete-task/" + areaName + "/" + taskId,
       {
@@ -67,7 +63,7 @@ export const apiTask = {
         }),
       }
     );
-    const data = await response.json();
+    const data: boolean = await response.json();
     return data;
   },
 };

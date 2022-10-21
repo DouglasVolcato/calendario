@@ -8,8 +8,20 @@ interface Props {
   createTask(areaName: string, taskBody: TaskInterface): void;
 }
 
+interface StateHandler {
+  area: string;
+  name: string;
+  description: string;
+  deadline: string;
+  agreedDeadline: string;
+  urgency: string;
+  gravity: string;
+  tendency: string;
+  legalDemand: boolean;
+}
+
 export function CreateTask({ areas, createTask }: Props) {
-  const [newTask, setNewTask] = useState({
+  const [newTask, setNewTask] = useState<StateHandler>({
     area: "",
     name: "",
     description: "",
@@ -42,7 +54,7 @@ export function CreateTask({ areas, createTask }: Props) {
     "Piora rapidamente",
   ];
 
-  async function createItem(event: FormEventHandler | any) {
+  async function createItem(event: FormEventHandler | any): Promise<void> {
     event.preventDefault();
     await createTask(newTask.area, {
       name: newTask.name,
@@ -69,8 +81,10 @@ export function CreateTask({ areas, createTask }: Props) {
           }
         >
           <option value={"null"}>Selecione uma área</option>
-          {areas.map((area) => (
-            <option value={area.name}>{area.name}</option>
+          {areas.map((area: AreaInterface, key) => (
+            <option key={key} className={"area-option" + key} value={area.name}>
+              {area.name}
+            </option>
           ))}
         </select>
         <br />
@@ -121,8 +135,10 @@ export function CreateTask({ areas, createTask }: Props) {
           }
         >
           <option value="null">Gravidade</option>
-          {gravity.map((word) => (
-            <option value={word}>{word}</option>
+          {gravity.map((word: string, key) => (
+            <option key={key} className={"gravity-option" + key} value={word}>
+              {word}
+            </option>
           ))}
         </select>
         <br />
@@ -133,8 +149,10 @@ export function CreateTask({ areas, createTask }: Props) {
           }
         >
           <option value="null">Urgência</option>
-          {urgency.map((word) => (
-            <option value={word}>{word}</option>
+          {urgency.map((word: string, key) => (
+            <option key={key} className={"urgency-option" + key} value={word}>
+              {word}
+            </option>
           ))}
         </select>
         <br />
@@ -145,8 +163,10 @@ export function CreateTask({ areas, createTask }: Props) {
           }
         >
           <option value="null">Tendência</option>
-          {tendency.map((word) => (
-            <option value={word}>{word}</option>
+          {tendency.map((word: string, key) => (
+            <option key={key} className={"tendency-option" + key} value={word}>
+              {word}
+            </option>
           ))}
         </select>
         <br />

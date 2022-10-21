@@ -11,7 +11,7 @@ export const apiArea = {
         "Content-Type": "application/json",
       }),
     });
-    const data = await response.json();
+    const data: { foundAreas: AreaInterface[] } = await response.json();
     return data;
   },
 
@@ -23,7 +23,7 @@ export const apiArea = {
         "Content-Type": "application/json",
       }),
     });
-    const data = await response.json();
+    const data: boolean = await response.json();
     return data;
   },
 
@@ -39,7 +39,7 @@ export const apiArea = {
       }),
       body: JSON.stringify({ name: newAreaName }),
     });
-    const data = await response.json();
+    const data: boolean = await response.json();
     return data;
   },
 
@@ -52,7 +52,7 @@ export const apiArea = {
       }),
       body: JSON.stringify({ name: areaName }),
     });
-    const data = await response.json();
+    const data: boolean = await response.json();
     return data;
   },
 };

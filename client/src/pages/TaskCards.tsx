@@ -14,7 +14,7 @@ interface Props {
 export function TaskCards({ area, index, from, to, updateTask }: Props) {
   const taskList: TaskInterface[] = [];
 
-  area.tasks.filter((task) => {
+  area.tasks.filter((task: TaskInterface) => {
     const month = task.deadline.split("-")[1];
     if (month === index.toString() || month === "0" + index.toString()) {
       if (Number(month) >= Number(from) && Number(month) <= Number(to))
@@ -25,8 +25,8 @@ export function TaskCards({ area, index, from, to, updateTask }: Props) {
   return (
     <div className="TaskCards">
       {index === 0 ? <div className="TaskCards-area">{area.name}</div> : <></>}
-      {taskList.map((task) => (
-        <div className="TaskCards-task">
+      {taskList.map((task: TaskInterface, key) => (
+        <div key={key} className="TaskCards-task">
           <TaskCard task={task} area={area.name} updateTask={updateTask} />
         </div>
       ))}

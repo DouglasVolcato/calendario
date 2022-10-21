@@ -10,13 +10,25 @@ interface Props {
   updateTask(areaName: string, taskBody: TaskInterface): void;
 }
 
+interface StateHandler {
+  area: string;
+  name: string;
+  description: string;
+  deadline: string;
+  agreedDeadline: string;
+  urgency: string;
+  gravity: string;
+  tendency: string;
+  legalDemand: boolean;
+}
+
 export function TaskEditionModal({
   task,
   area,
   setEditionModal,
   updateTask,
 }: Props) {
-  const [updatedTask, setUpdatedTask] = useState({
+  const [updatedTask, setUpdatedTask] = useState<StateHandler>({
     area: area,
     name: task.name,
     description: task.description,
@@ -50,7 +62,7 @@ export function TaskEditionModal({
     "Piora rapidamente",
   ];
 
-  async function updateItem(event: FormEventHandler | any) {
+  async function updateItem(event: FormEventHandler | any): Promise<void> {
     event.preventDefault();
     await updateTask(area, {
       id: task.id,
@@ -66,7 +78,7 @@ export function TaskEditionModal({
     window.location.reload();
   }
 
-  async function deleteItem() {
+  async function deleteItem(): Promise<void> {
     if (task.id) {
       await apiTask.deleteTask(area, task.id);
       window.location.reload();
@@ -121,8 +133,10 @@ export function TaskEditionModal({
           }
         >
           <option value={updatedTask.gravity}>{updatedTask.gravity}</option>
-          {gravity.map((word) => (
-            <option value={word}>{word}</option>
+          {gravity.map((word: string, key) => (
+            <option key={key} value={word}>
+              {word}
+            </option>
           ))}
         </select>
         <br />
@@ -134,8 +148,10 @@ export function TaskEditionModal({
           }
         >
           <option value={updatedTask.urgency}>{updatedTask.urgency}</option>
-          {urgency.map((word) => (
-            <option value={word}>{word}</option>
+          {urgency.map((word: string, key) => (
+            <option key={key} value={word}>
+              {word}
+            </option>
           ))}
         </select>
         <br />
@@ -146,8 +162,10 @@ export function TaskEditionModal({
           }
         >
           <option value={updatedTask.tendency}>{updatedTask.tendency}</option>
-          {tendency.map((word) => (
-            <option value={word}>{word}</option>
+          {tendency.map((word: string, key) => (
+            <option key={key} value={word}>
+              {word}
+            </option>
           ))}
         </select>
         <br />

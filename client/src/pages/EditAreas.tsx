@@ -13,7 +13,7 @@ interface Props {
 export function EditAreas({ areas, deleteArea, editArea, createArea }: Props) {
   const [newArea, setNewArea] = useState<string>("");
 
-  async function createitem(event: FormEventHandler | any) {
+  async function createitem(event: FormEventHandler | any): Promise<void> {
     event.preventDefault();
     await createArea(newArea);
     setNewArea("");

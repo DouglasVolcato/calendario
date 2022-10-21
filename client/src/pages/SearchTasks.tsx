@@ -19,7 +19,10 @@ export function SearchTasks({ areas }: Props) {
     month1: 1,
     month2: 12,
   });
-  const months = [
+  const months: {
+    name: string;
+    number: number;
+  }[] = [
     { name: "Janeiro", number: 1 },
     { name: "Fevereito", number: 2 },
     { name: "Março", number: 3 },
@@ -34,7 +37,7 @@ export function SearchTasks({ areas }: Props) {
     { name: "Dezembro", number: 12 },
   ];
 
-  function handleSubmit(event: FormEventHandler | any) {
+  function handleSubmit(event: FormEventHandler | any): void {
     event.preventDefault();
     navigate(
       `/path=calendar?area=${selectedArea}&from=${selectedMonths.month1}&to=${selectedMonths.month2}`
@@ -52,8 +55,10 @@ export function SearchTasks({ areas }: Props) {
           onChange={(event) => setSelectedArea(event.target.value)}
         >
           <option value="">Selecione</option>
-          {areas.map((area) => (
-            <option value={area.name}>{area.name}</option>
+          {areas.map((area: AreaInterface, key) => (
+            <option key={key} value={area.name}>
+              {area.name}
+            </option>
           ))}
         </select>
         <br />
@@ -71,8 +76,10 @@ export function SearchTasks({ areas }: Props) {
             }
           >
             <option value={0}>Selecione</option>
-            {months.map((month) => (
-              <option value={month.number}>{month.name}</option>
+            {months.map((month, key) => (
+              <option key={key} value={month.number}>
+                {month.name}
+              </option>
             ))}
           </select>
           <label>à</label>
@@ -86,8 +93,10 @@ export function SearchTasks({ areas }: Props) {
             }
           >
             <option value={0}>Selecione</option>
-            {months.map((month) => (
-              <option value={month.number}>{month.name}</option>
+            {months.map((month, key) => (
+              <option key={key} value={month.number}>
+                {month.name}
+              </option>
             ))}
           </select>
         </div>

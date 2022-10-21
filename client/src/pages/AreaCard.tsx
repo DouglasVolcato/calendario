@@ -14,12 +14,12 @@ export function AreaCard({ area, index, deleteArea, editArea }: Props) {
   const [editionForm, setEditionForm] = useState<boolean>(false);
   const [newName, setNewName] = useState<string>(area.name);
 
-  async function deleteItem() {
+  async function deleteItem(): Promise<void> {
     await deleteArea(area.name);
     setEditionForm(false);
   }
 
-  async function editItem(event: FormEventHandler | any) {
+  async function editItem(event: FormEventHandler | any): Promise<void> {
     event.preventDefault();
     await editArea(area.name, newName);
     setEditionForm(false);
