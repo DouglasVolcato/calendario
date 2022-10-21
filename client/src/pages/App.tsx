@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./Header";
 import { EditAreas } from "./EditAreas";
-import "../styles/App.css";
 import { apiArea } from "../utils/api";
 import { useEffect, useState } from "react";
 import { AreaInterface } from "../protocols/data/area-interface";
@@ -9,6 +8,7 @@ import { Tasks } from "./Tasks";
 import { Calendar } from "./Calendar";
 import { apiTask } from "../utils/apiTask";
 import { TaskInterface } from "../protocols/data/task-interface";
+import "../styles/App.css";
 
 function App() {
   const [areas, setAreas] = useState<AreaInterface[]>([]);
@@ -49,6 +49,10 @@ function App() {
     });
   }
 
+  async function updateTask(areaName: string, taskBody: TaskInterface) {
+    await apiTask.updateTask(areaName, taskBody);
+  }
+
   useEffect(() => {
     getAreas();
   }, []);
@@ -73,7 +77,10 @@ function App() {
               />
             }
           />
-          <Route path="/path=calendar" element={<Calendar areas={areas} />} />
+          <Route
+            path="/path=calendar"
+            element={<Calendar areas={areas} updateTask={updateTask} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
