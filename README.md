@@ -65,7 +65,6 @@ npm run start
 ```shell
 cd client
 npm run start
-cd ..
 ```
 
 Tendo isso concluído, a página da web poderá ser aberta em [http://localhost:5002](http://localhost:5002)
