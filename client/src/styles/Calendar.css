@@ -19,3 +19,7 @@
     display: grid;
     grid-template-columns: repeat(13, 1fr);
 }
+
+.colored{
+    background-color: rgb(82, 82, 82);
+}

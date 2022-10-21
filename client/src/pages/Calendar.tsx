@@ -34,12 +34,9 @@ export function Calendar({ areas }: Props) {
     { name: "Dezembro", number: 12 },
   ];
 
-  return (
-    <div className="Calendar">
-      {months.map((month) => (
-        <div className={`month-${month.number}`}>{month.name}</div>
-      ))}
-      {selectedArea.map((area) => (
+  function getAreas(area: AreaInterface, index: number) {
+    if (index % 2 === 0) {
+      return (
         <div className="Calendar-areas">
           {months.map((item, index) => (
             <div>
@@ -47,7 +44,26 @@ export function Calendar({ areas }: Props) {
             </div>
           ))}
         </div>
+      );
+    } else {
+      return (
+        <div className="Calendar-areas colored">
+          {months.map((item, index) => (
+            <div>
+              <TaskCards area={area} index={index} from={from} to={to} />
+            </div>
+          ))}
+        </div>
+      );
+    }
+  }
+
+  return (
+    <div className="Calendar">
+      {months.map((month) => (
+        <div className={`month-${month.number}`}>{month.name}</div>
       ))}
+      {selectedArea.map((area, index) => getAreas(area, index))}
     </div>
   );
 }
