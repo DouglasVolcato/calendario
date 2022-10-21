@@ -1,15 +1,17 @@
 import { AreaInterface } from "../protocols/data/area-interface";
 import { TaskInterface } from "../protocols/data/task-interface";
 import "../styles/TaskCards.css";
+import { TaskCard } from "./TaskCard";
 
 interface Props {
   area: AreaInterface;
   index: number;
   from: string | null;
   to: string | null;
+  updateTask(areaName: string, taskBody: TaskInterface): void;
 }
 
-export function TaskCards({ area, index, from, to }: Props) {
+export function TaskCards({ area, index, from, to, updateTask }: Props) {
   const taskList: TaskInterface[] = [];
 
   area.tasks.filter((task) => {
@@ -24,7 +26,9 @@ export function TaskCards({ area, index, from, to }: Props) {
     <div className="TaskCards">
       {index === 0 ? <div className="TaskCards-area">{area.name}</div> : <></>}
       {taskList.map((task) => (
-        <div className="TaskCards-task">{task.name}</div>
+        <div className="TaskCards-task">
+          <TaskCard task={task} area={area.name} updateTask={updateTask}/>
+        </div>
       ))}
     </div>
   );

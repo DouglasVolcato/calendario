@@ -1,0 +1,22 @@
+.TaskCard{
+    border: solid 3px yellow;
+    border-radius: 5px;
+    background-color: rgb(1, 53, 121);
+}
+
+.TaskCard-name{
+    font-size: 15px;
+    font-weight: bold;
+}
+.TaskCard-description{
+    font-size: 12px;
+}
+
+.TaskCard-button{
+    background-color: rgb(15, 165, 202);
+    font-size: 20px;
+}
+
+.prioriry{
+    border-color: red;
+}
