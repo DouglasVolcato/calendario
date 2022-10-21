@@ -1,0 +1,21 @@
+.TaskEditionModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: fit-content;
+    width: 100vw;
+}
+
+.TaskEditionModal-form{
+    background-color: gray;
+    max-width: 100vw;
+    width: 280px;
+    height: 140vh;
+    margin: auto;
+    padding: 5px;
+    border:  solid 3px gold;
+}
+
+.TaskEditionModal label{
+    font-weight: bold;
+}

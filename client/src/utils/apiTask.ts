@@ -32,4 +32,23 @@ export const apiTask = {
     const data = await response.json();
     return data;
   },
+
+  updateTask: async (
+    areaName: string,
+    taskBody: TaskInterface
+  ): Promise<{ foundTasks: TaskInterface[] }> => {
+    const response = await fetch(
+      baseUrl + "/task/update-task/" + areaName + "/" + taskBody.id,
+      {
+        method: "PUT",
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(taskBody),
+      }
+    );
+    const data = await response.json();
+    return data;
+  },
 };
