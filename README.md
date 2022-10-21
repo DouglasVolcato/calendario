@@ -58,10 +58,9 @@ Após instaladas as dependências, na raiz do projeto, digite os seguintes coman
 cd server
 npm run build
 npm run start
-cd ..
 ```
 
-> Após rodar o Backend, para rodar o Frontend.
+> Após rodar o Backend, abra outro terminal na raiz do projeto para rodar o Frontend.
 
 ```shell
 cd client
