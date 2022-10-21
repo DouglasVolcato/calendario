@@ -3,11 +3,11 @@ import { Header } from "./Header";
 import { EditAreas } from "./EditAreas";
 import { apiArea } from "../utils/apiArea";
 import { useEffect, useState } from "react";
-import { AreaInterface } from "../protocols/data/area-interface";
+import { AreaInterface } from "../protocols/area-interface";
 import { Tasks } from "./Tasks";
 import { Calendar } from "./Calendar";
 import { apiTask } from "../utils/apiTask";
-import { TaskInterface } from "../protocols/data/task-interface";
+import { TaskInterface } from "../protocols/task-interface";
 import "../styles/App.css";
 import NotFound from "./NotFound";
 

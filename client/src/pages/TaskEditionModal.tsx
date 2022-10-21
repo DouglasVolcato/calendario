@@ -1,5 +1,5 @@
 import { FormEventHandler, useState } from "react";
-import { TaskInterface } from "../protocols/data/task-interface";
+import { TaskInterface } from "../protocols/task-interface";
 import "../styles/TaskEditionModal.css";
 import { apiTask } from "../utils/apiTask";
 

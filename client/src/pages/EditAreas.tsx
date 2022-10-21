@@ -1,5 +1,5 @@
 import { FormEventHandler, useState } from "react";
-import { AreaInterface } from "../protocols/data/area-interface";
+import { AreaInterface } from "../protocols/area-interface";
 import "../styles/EditAreas.css";
 import { AreaCard } from "./AreaCard";
 

@@ -1,6 +1,6 @@
 import { FormEventHandler, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AreaInterface } from "../protocols/data/area-interface";
+import { AreaInterface } from "../protocols/area-interface";
 import "../styles/SearchTasks.css";
 
 interface Props {

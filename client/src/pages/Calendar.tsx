@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import { AreaInterface } from "../protocols/data/area-interface";
+import { AreaInterface } from "../protocols/area-interface";
 import { TaskCards } from "./TaskCards";
 import "../styles/Calendar.css";
-import { TaskInterface } from "../protocols/data/task-interface";
+import { TaskInterface } from "../protocols/task-interface";
 
 interface Props {
   areas: AreaInterface[];

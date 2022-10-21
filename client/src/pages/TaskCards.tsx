@@ -1,5 +1,5 @@
-import { AreaInterface } from "../protocols/data/area-interface";
-import { TaskInterface } from "../protocols/data/task-interface";
+import { AreaInterface } from "../protocols/area-interface";
+import { TaskInterface } from "../protocols/task-interface";
 import "../styles/TaskCards.css";
 import { TaskCard } from "./TaskCard";
 
@@ -27,7 +27,7 @@ export function TaskCards({ area, index, from, to, updateTask }: Props) {
       {index === 0 ? <div className="TaskCards-area">{area.name}</div> : <></>}
       {taskList.map((task) => (
         <div className="TaskCards-task">
-          <TaskCard task={task} area={area.name} updateTask={updateTask}/>
+          <TaskCard task={task} area={area.name} updateTask={updateTask} />
         </div>
       ))}
     </div>

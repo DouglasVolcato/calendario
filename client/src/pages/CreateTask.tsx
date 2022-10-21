@@ -1,6 +1,6 @@
 import { FormEventHandler, useState } from "react";
-import { AreaInterface } from "../protocols/data/area-interface";
-import { TaskInterface } from "../protocols/data/task-interface";
+import { AreaInterface } from "../protocols/area-interface";
+import { TaskInterface } from "../protocols/task-interface";
 import "../styles/CreateTask.css";
 
 interface Props {

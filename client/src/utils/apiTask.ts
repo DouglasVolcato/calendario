@@ -1,4 +1,4 @@
-import { TaskInterface } from "../protocols/data/task-interface";
+import { TaskInterface } from "../protocols/task-interface";
 
 const baseUrl = "http://localhost:3002";
 

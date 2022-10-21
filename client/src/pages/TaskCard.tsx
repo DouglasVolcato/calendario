@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TaskInterface } from "../protocols/data/task-interface";
+import { TaskInterface } from "../protocols/task-interface";
 import "../styles/TaskCard.css";
 import { TaskEditionModal } from "./TaskEditionModal";
 

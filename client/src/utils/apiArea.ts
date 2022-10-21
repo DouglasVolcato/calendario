@@ -1,4 +1,4 @@
-import { AreaInterface } from "../protocols/data/area-interface";
+import { AreaInterface } from "../protocols/area-interface";
 
 const baseUrl = "http://localhost:3002";
 
