@@ -2,12 +2,14 @@ import { useSearchParams } from "react-router-dom";
 import { AreaInterface } from "../protocols/data/area-interface";
 import { TaskCards } from "./TaskCards";
 import "../styles/Calendar.css";
+import { TaskInterface } from "../protocols/data/task-interface";
 
 interface Props {
   areas: AreaInterface[];
+  updateTask(areaName: string, taskBody: TaskInterface): void;
 }
 
-export function Calendar({ areas }: Props) {
+export function Calendar({ areas, updateTask }: Props) {
   const [searchParams] = useSearchParams();
   const selectedAreaName = searchParams.get("area");
   const from = searchParams.get("from");
@@ -40,7 +42,13 @@ export function Calendar({ areas }: Props) {
         <div className="Calendar-areas">
           {months.map((item, index) => (
             <div>
-              <TaskCards area={area} index={index} from={from} to={to} />
+              <TaskCards
+                area={area}
+                index={index}
+                from={from}
+                to={to}
+                updateTask={updateTask}
+              />
             </div>
           ))}
         </div>
@@ -50,7 +58,13 @@ export function Calendar({ areas }: Props) {
         <div className="Calendar-areas colored">
           {months.map((item, index) => (
             <div>
-              <TaskCards area={area} index={index} from={from} to={to} />
+              <TaskCards
+                area={area}
+                index={index}
+                from={from}
+                to={to}
+                updateTask={updateTask}
+              />
             </div>
           ))}
         </div>
