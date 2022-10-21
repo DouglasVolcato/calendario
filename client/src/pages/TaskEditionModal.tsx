@@ -1,6 +1,7 @@
 import { FormEventHandler, useState } from "react";
 import { TaskInterface } from "../protocols/data/task-interface";
 import "../styles/TaskEditionModal.css";
+import { apiTask } from "../utils/apiTask";
 
 interface Props {
   task: TaskInterface;
@@ -62,7 +63,14 @@ export function TaskEditionModal({
       tendency: updatedTask.tendency,
       legalDemand: updatedTask.legalDemand,
     });
-    window.location.reload()
+    window.location.reload();
+  }
+
+  async function deleteItem() {
+    if (task.id) {
+      await apiTask.deleteTask(area, task.id);
+      window.location.reload();
+    }
   }
 
   return (
@@ -156,16 +164,23 @@ export function TaskEditionModal({
           />
           <label>Demanda legal</label>
         </div>
-        <br />
         <button type="submit" className="CreateTask-form_button">
           Atualizar
         </button>
         <button
           type="button"
           className="CreateTask-form_button"
+          onClick={() => deleteItem()}
+        >
+          Deletar
+        </button>
+        <br />
+        <button
+          type="button"
+          className="CreateTask-form_button"
           onClick={() => setEditionModal(false)}
         >
-          Sair
+          Fechar
         </button>
       </form>
     </div>

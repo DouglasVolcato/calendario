@@ -51,4 +51,23 @@ export const apiTask = {
     const data = await response.json();
     return data;
   },
+
+  deleteTask: async (
+    areaName: string,
+    taskId: string
+  ): Promise<{ foundTasks: TaskInterface[] }> => {
+    console.log("foi");
+    const response = await fetch(
+      baseUrl + "/task/delete-task/" + areaName + "/" + taskId,
+      {
+        method: "Delete",
+        headers: new Headers({
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }),
+      }
+    );
+    const data = await response.json();
+    return data;
+  },
 };
