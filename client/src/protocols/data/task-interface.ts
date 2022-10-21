@@ -1,8 +1,8 @@
 export interface TaskInterface {
     name: string;
     description: string;
-    deadline: string | Date;
-    agreedDeadline: string | Date;
+    deadline: string;
+    agreedDeadline: string;
     urgency: string;
     gravity: string;
     tendency: string;
