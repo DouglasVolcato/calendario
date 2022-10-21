@@ -12,7 +12,12 @@ export class CreateAreaUseCase implements CreateAreaUseCaseInterface {
 
   async execute(areaBody: AreaInterface): Promise<boolean> {
     const newArea = new Area(areaBody);
-    newArea.validate();
-    return await this.repository.createArea(newArea.getBody());
+    const foundArea = await this.repository.getArea(newArea.body.name);
+    if (foundArea) {
+      return false;
+    } else {
+      newArea.validate();
+      return await this.repository.createArea(newArea.getBody());
+    }
   }
 }
