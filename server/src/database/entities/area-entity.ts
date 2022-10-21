@@ -16,6 +16,6 @@ export class Area implements Entity {
   }
 
   getBody(): AreaInterface {
-    return { name: this.body.name, tasks: this.body.tasks };
+    return { name: this.body.name, tasks: this.body.tasks ?? [] };
   }
 }
