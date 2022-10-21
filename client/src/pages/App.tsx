@@ -38,13 +38,13 @@ function App() {
       }
     });
     setAreas(newAreas);
-    setTimeout(() => getAreas(), 3000);
+    getAreas();
   }
 
   async function createArea(areaName: string): Promise<void> {
     await apiArea.createArea(areaName);
     setAreas([...areas, { name: areaName, tasks: [] }]);
-    setTimeout(() => getAreas(), 3000);
+    getAreas();
   }
 
   async function createTask(
