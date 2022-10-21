@@ -1,5 +1,4 @@
 export interface TaskInterface {
-    id: string;
     name: string;
     description: string;
     deadline: string | Date;
