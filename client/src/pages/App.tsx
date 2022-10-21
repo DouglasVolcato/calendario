@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header } from "./Header";
 import { EditAreas } from "./EditAreas";
-import { apiArea } from "../utils/api";
+import { apiArea } from "../utils/apiArea";
 import { useEffect, useState } from "react";
 import { AreaInterface } from "../protocols/data/area-interface";
 import { Tasks } from "./Tasks";
@@ -9,6 +9,7 @@ import { Calendar } from "./Calendar";
 import { apiTask } from "../utils/apiTask";
 import { TaskInterface } from "../protocols/data/task-interface";
 import "../styles/App.css";
+import NotFound from "./NotFound";
 
 function App() {
   const [areas, setAreas] = useState<AreaInterface[]>([]);
@@ -22,6 +23,7 @@ function App() {
   async function deleteArea(areaName: string) {
     const deleted: boolean = await apiArea.deleteArea(areaName);
     setAreas(() => areas.filter((area) => area.name !== areaName));
+    setTimeout(() => getAreas(), 3000);
   }
 
   async function editArea(areaName: string, newAreaName: string) {
@@ -33,11 +35,13 @@ function App() {
       }
     });
     setAreas(newAreas);
+    setTimeout(() => getAreas(), 3000);
   }
 
   async function createArea(areaName: string) {
     const created = await apiArea.createArea(areaName);
     setAreas([...areas, { name: areaName, tasks: [] }]);
+    setTimeout(() => getAreas(), 3000);
   }
 
   async function createTask(areaName: string, taskBody: TaskInterface) {
@@ -47,10 +51,12 @@ function App() {
         area.tasks.push(taskBody);
       }
     });
+    setTimeout(() => getAreas(), 3000);
   }
 
   async function updateTask(areaName: string, taskBody: TaskInterface) {
     await apiTask.updateTask(areaName, taskBody);
+    setTimeout(() => getAreas(), 3000);
   }
 
   useEffect(() => {
@@ -81,6 +87,7 @@ function App() {
             path="/path=calendar"
             element={<Calendar areas={areas} updateTask={updateTask} />}
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </BrowserRouter>
